@@ -1,5 +1,12 @@
-import { User } from "./User";
-import { Company } from "./Company";
+// NOTE: This can be used in any future project if you need to display a google map.
+// Instructions to every other class on how argument on addMarker can be handled
+export interface Mappable {
+	location: {
+		lat: number;
+		lng: number;
+	};
+	markerContent(): string;
+}
 export class CustomMap {
 	private googleMap: google.maps.Map;
 
@@ -12,22 +19,29 @@ export class CustomMap {
 			},
 		});
 	}
-	addUserMarker(user: User): void {
-		new google.maps.Marker({
+	addMarker(mappable: Mappable): void {
+		const marker = new google.maps.Marker({
 			map: this.googleMap,
 			position: {
-				lat: user.location.lat,
-				lng: user.location.lng,
+				lat: mappable.location.lat,
+				lng: mappable.location.lng,
 			},
 		});
-	}
-	addCompanyMarker(company: Company): void {
-		new google.maps.Marker({
-			map: this.googleMap,
-			position: {
-				lat: company.location.lat,
-				lng: company.location.lng,
-			},
+		marker.addListener("click", () => {
+			// Creates infoWindow when marker is clicked.
+			const infoWindow = new google.maps.InfoWindow({
+				content: mappable.markerContent(),
+			});
+			infoWindow.open(this.googleMap, marker);
 		});
 	}
+	// addCompanyMarker(company: Company): void {
+	// 	new google.maps.Marker({
+	// 		map: this.googleMap,
+	// 		position: {
+	// 			lat: company.location.lat,
+	// 			lng: company.location.lng,
+	// 		},
+	// 	});
+	// }
 }
