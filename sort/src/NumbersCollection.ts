@@ -4,6 +4,7 @@ export class NumbersCollection {
 	get length(): number {
 		return this.data.length;
 	}
+	// rightIndex => leftIndex + 1
 	compare(leftIndex: number, rightIndex: number): boolean {
 		return this.data[leftIndex] > this.data[rightIndex];
 	}

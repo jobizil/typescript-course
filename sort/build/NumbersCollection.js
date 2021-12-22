@@ -9,6 +9,7 @@ class NumbersCollection {
     get length() {
         return this.data.length;
     }
+    // rightIndex => leftIndex + 1
     compare(leftIndex, rightIndex) {
         return this.data[leftIndex] > this.data[rightIndex];
     }

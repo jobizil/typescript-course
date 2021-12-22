@@ -1,7 +1,11 @@
-import { NumbersCollection } from "./NumbersCollection";
+interface Sortable {
+	compare(leftIndex: number, rightIndex: number): boolean;
+	swap(leftIndex: number, rightIndex: number): void;
+	length: number;
+}
 // Bubble sort is like a double nested for loop.
 export class Sorter {
-	constructor(public collection: NumbersCollection) {}
+	constructor(public collection: Sortable) {}
 
 	sort(): void {
 		const { length } = this.collection;
