@@ -1,5 +1,8 @@
-export class NumbersCollection {
-	constructor(public data: number[]) {}
+import { Sorter } from "./Sorter";
+export class NumbersCollection extends Sorter {
+	constructor(public data: number[]) {
+		super();
+	}
 	//USing an accessor helps you call methods like a property.
 	get length(): number {
 		return this.data.length;

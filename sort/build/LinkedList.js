@@ -7,8 +7,10 @@ class Node {
         this.next = null;
     }
 }
-class LinkedList {
+const Sorter_1 = require("./Sorter");
+class LinkedList extends Sorter_1.Sorter {
     constructor() {
+        super(...arguments);
         this.head = null;
     }
     add(data) {
