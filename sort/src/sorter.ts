@@ -1,8 +1,3 @@
-interface Sortable {
-	compare(leftIndex: number, rightIndex: number): boolean;
-	swap(leftIndex: number, rightIndex: number): void;
-	length: number;
-}
 // Bubble sort is like a double nested for loop.
 export abstract class Sorter {
 	// abstract is used to mark keywords as existing in the future
