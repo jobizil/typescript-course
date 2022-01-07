@@ -1,26 +1,24 @@
 // Easy/ Bad Approach
-import fs from "fs";
-
+import { CsvFileReader } from "./CsvFileReader";
+import { MatchResult } from "./MatchResult";
 // Get a string representation of the data and using a \n && split method to get a readable arr data
-const matches = fs
+/* const matches = fs
 	.readFileSync("football.csv", { encoding: "utf8" })
 	.split("\n")
 	.map((row: string): string[] => {
 		return row.split(",");
 	});
+ */
+const reader = new CsvFileReader("football.csv");
+reader.read(); // This opens data in the CsvFileReader file and loads it and assign it into the data
 
 let wonMatch = 0;
 
-enum MatchResult {
-	HomeWin = "H",
-	AwayWin = "A",
-	Draw = "D",
-}
-for (let match of matches) {
-	if (match[1] === "Everton" && match[5] === MatchResult.HomeWin) {
+for (let match of reader.data) {
+	if (match[1] === "Man United" && match[5] === MatchResult.HomeWin) {
 		wonMatch++;
-	} else if (match[2] === "Everton" && match[5] === MatchResult.AwayWin) {
+	} else if (match[2] === "Man United" && match[5] === MatchResult.AwayWin) {
 		wonMatch++;
 	}
 }
-console.log(`Everton won ${wonMatch} matches`);
+console.log(`Man United won ${wonMatch} matches`);

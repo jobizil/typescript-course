@@ -1,30 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 // Easy/ Bad Approach
-const fs_1 = __importDefault(require("fs"));
+const CsvFileReader_1 = require("./CsvFileReader");
+const MatchResult_1 = require("./MatchResult");
 // Get a string representation of the data and using a \n && split method to get a readable arr data
-const matches = fs_1.default
+/* const matches = fs
     .readFileSync("football.csv", { encoding: "utf8" })
     .split("\n")
-    .map((row) => {
-    return row.split(",");
-});
+    .map((row: string): string[] => {
+        return row.split(",");
+    });
+ */
+const reader = new CsvFileReader_1.CsvFileReader("football.csv");
+reader.read(); // This opens data in the CsvFileReader file and loads it and assign it into the data
 let wonMatch = 0;
-var MatchResult;
-(function (MatchResult) {
-    MatchResult["HomeWin"] = "H";
-    MatchResult["AwayWin"] = "A";
-    MatchResult["Draw"] = "D";
-})(MatchResult || (MatchResult = {}));
-for (let match of matches) {
-    if (match[1] === "Everton" && match[5] === MatchResult.HomeWin) {
+for (let match of reader.data) {
+    if (match[1] === "Man United" && match[5] === MatchResult_1.MatchResult.HomeWin) {
         wonMatch++;
     }
-    else if (match[2] === "Everton" && match[5] === MatchResult.AwayWin) {
+    else if (match[2] === "Man United" && match[5] === MatchResult_1.MatchResult.AwayWin) {
         wonMatch++;
     }
 }
-console.log(`Everton won ${wonMatch} matches`);
+console.log(`Man United won ${wonMatch} matches`);
