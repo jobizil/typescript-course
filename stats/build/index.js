@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // Easy/ Bad Approach
-const CsvFileReader_1 = require("./CsvFileReader");
+const MatchReader_1 = require("./MatchReader");
 const MatchResult_1 = require("./MatchResult");
 // Get a string representation of the data and using a \n && split method to get a readable arr data
 /* const matches = fs
@@ -11,7 +11,7 @@ const MatchResult_1 = require("./MatchResult");
         return row.split(",");
     });
  */
-const reader = new CsvFileReader_1.CsvFileReader("football.csv");
+const reader = new MatchReader_1.MatchReader("football.csv");
 reader.read(); // This opens data in the CsvFileReader file and loads it and assign it into the data
 let wonMatch = 0;
 for (let match of reader.data) {

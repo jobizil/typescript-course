@@ -1,5 +1,5 @@
 // Easy/ Bad Approach
-import { CsvFileReader } from "./CsvFileReader";
+import { MatchReader } from "./MatchReader";
 import { MatchResult } from "./MatchResult";
 // Get a string representation of the data and using a \n && split method to get a readable arr data
 /* const matches = fs
@@ -9,7 +9,7 @@ import { MatchResult } from "./MatchResult";
 		return row.split(",");
 	});
  */
-const reader = new CsvFileReader("football.csv");
+const reader = new MatchReader("football.csv");
 reader.read(); // This opens data in the CsvFileReader file and loads it and assign it into the data
 
 let wonMatch = 0;
