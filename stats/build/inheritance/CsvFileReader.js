@@ -8,6 +8,7 @@ const fs_1 = __importDefault(require("fs"));
 class CsvFileReader {
     constructor(filename) {
         this.filename = filename;
+        // Read more on TS Generic Class
         this.data = [];
     }
     read() {
@@ -16,7 +17,8 @@ class CsvFileReader {
             .split("\n")
             .map((rows) => {
             return rows.split(",");
-        });
+        })
+            .map(this.mapRow);
     }
 }
 exports.CsvFileReader = CsvFileReader;

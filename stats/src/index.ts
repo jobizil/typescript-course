@@ -1,4 +1,5 @@
 // Easy/ Bad Approach
+import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
 import { MatchResult } from "./MatchResult";
 // Get a string representation of the data and using a \n && split method to get a readable arr data
@@ -9,12 +10,16 @@ import { MatchResult } from "./MatchResult";
 		return row.split(",");
 	});
  */
-const reader = new MatchReader("football.csv");
-reader.read(); // This opens data in the CsvFileReader file and loads it and assign it into the data
 
+// Create an object that satisfies the 'DataReader' interface
+const csvFileReader = new CsvFileReader("football.csv");
+/* Create an instance of MatchReader and pass in something satisfying. the 'DataReader' interface*/
+
+const matchReader = new MatchReader(csvFileReader);
+matchReader.load();
 let wonMatch = 0;
 
-for (let match of reader.data) {
+for (let match of matchReader.matches) {
 	if (match[1] === "Man United" && match[5] === MatchResult.HomeWin) {
 		wonMatch++;
 	} else if (match[2] === "Man United" && match[5] === MatchResult.AwayWin) {

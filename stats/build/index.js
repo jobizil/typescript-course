@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // Easy/ Bad Approach
+const CsvFileReader_1 = require("./CsvFileReader");
 const MatchReader_1 = require("./MatchReader");
 const MatchResult_1 = require("./MatchResult");
 // Get a string representation of the data and using a \n && split method to get a readable arr data
@@ -11,10 +12,13 @@ const MatchResult_1 = require("./MatchResult");
         return row.split(",");
     });
  */
-const reader = new MatchReader_1.MatchReader("football.csv");
-reader.read(); // This opens data in the CsvFileReader file and loads it and assign it into the data
+// Create an object that satisfies the 'DataReader' interface
+const csvFileReader = new CsvFileReader_1.CsvFileReader("football.csv");
+/* Create an instance of MatchReader and pass in something satisfying. the 'DataReader' interface*/
+const matchReader = new MatchReader_1.MatchReader(csvFileReader);
+matchReader.load();
 let wonMatch = 0;
-for (let match of reader.data) {
+for (let match of matchReader.matches) {
     if (match[1] === "Man United" && match[5] === MatchResult_1.MatchResult.HomeWin) {
         wonMatch++;
     }
