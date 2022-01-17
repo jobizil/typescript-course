@@ -1,8 +1,5 @@
 import { dateStringToDate } from "./util";
-import { MatchResult } from "./MatchResult";
-
-// Define a tuple as a new type
-type MatchData = [Date, String, String, Number, Number, MatchResult, String];
+import { MatchData } from "./MatchData";
 interface DataReader {
 	read(): void;
 	data: string[][];
