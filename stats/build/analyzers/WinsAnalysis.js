@@ -9,10 +9,10 @@ class WinsAnalysis {
     run(matches) {
         let wonMatch = 0;
         for (let match of matches) {
-            if (match[1] === "Man United" && match[5] === MatchResult_1.MatchResult.HomeWin) {
+            if (match[1] === "Tottenham" && match[5] === MatchResult_1.MatchResult.HomeWin) {
                 wonMatch++;
             }
-            else if (match[2] === "Man United" && match[5] === MatchResult_1.MatchResult.AwayWin) {
+            else if (match[2] === "Tottenham" && match[5] === MatchResult_1.MatchResult.AwayWin) {
                 wonMatch++;
             }
         }
